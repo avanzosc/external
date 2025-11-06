@@ -43,7 +43,7 @@ class AccountMove(models.Model):
     purchase_order_id = fields.Many2one('purchase.order', string="Purchase Order",
                                         compute="_compute_purchase_order", store=True,help="Linking Purchase Order")
 
-    @api.constrains('company_currency_id', 'currency_id')
+    @api.onchange('company_currency_id', 'currency_id')
     def _onchange_different_currency(self):
         """ When the Currency is changed back to company currency, the boolean field is disabled """
         if self.company_currency_id == self.currency_id:
