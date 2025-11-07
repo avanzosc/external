@@ -44,7 +44,7 @@ class WebsiteSale(payment_portal.PaymentPortal):
     def cart(self, access_token=None, revive='', **post):
         """Function to update the address from cart when the sale order is
         created"""
-        res = super().cart(access_token, revive, **post)
+        res = super().cart(acces_token=access_token, revive=revive, **post)
         if 'post_values' in request.session:
             post_values = request.session['post_values']
             order = request.website.sale_get_order()
