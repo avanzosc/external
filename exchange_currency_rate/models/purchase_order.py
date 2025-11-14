@@ -34,7 +34,7 @@ class PurchaseOrder(models.Model):
     is_exchange = fields.Boolean(string='Apply Manual Currency', help='allows users to manually apply an exchange rate')
     rate = fields.Float(string='Rate', help='specify the rate', default=1)
 
-    @api.constrains('company_currency_id', 'currency_id')
+    @api.onchange('company_currency_id', 'currency_id')
     def _onchange_different_currency(self):
         """ When the Currency is changed back to company currency, the boolean field is disabled """
         if self.company_currency_id == self.currency_id:
